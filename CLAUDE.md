@@ -21,6 +21,8 @@ Next.js 16 App Router アプリケーション:
 
 - React 19 + TypeScript (strict mode)
 - Tailwind CSS 4 with PostCSS
+- **shadcn/ui** (new-york style) - UIコンポーネント基盤
+- **next-themes** - ダークモード対応
 - **exceljs** - Excelファイル(.xlsx, .xls)のパース処理
 - Geist font family via next/font
 
@@ -28,16 +30,12 @@ Next.js 16 App Router アプリケーション:
 
 - `app/` - Next.js App Router pages and layouts
   - `page.tsx` - メインページ（ファイルアップロード、Excel解析、プレビュー表示）
-  - `layout.tsx` - Root layout with font configuration
-  - `globals.css` - Global Tailwind styles
   - `types.ts` - 共通型定義（ParsedRow, ParsedSheet, ParsedWorkbook）
-  - `components/` - UIコンポーネント
-    - `FileUploader.tsx` - ファイル選択UI
-    - `LogDisplay.tsx` - 処理ログ表示
-    - `WorkbookPreview.tsx` - Excelデータのプレビュー表示
-  - `hooks/` - カスタムフック
-    - `useExcelParser.ts` - Excel解析ロジック（exceljs使用）
-- `public/` - Static assets
+  - `components/` - アプリ固有コンポーネント
+  - `hooks/` - カスタムフック（useExcelParser等）
+  - `providers/` - ThemeProvider等
+- `components/ui/` - shadcn/uiコンポーネント
+- `lib/utils.ts` - cn()ユーティリティ（tailwind-merge + clsx）
 
 ### Data Flow
 
@@ -47,7 +45,7 @@ Next.js 16 App Router アプリケーション:
 
 ### Path Alias
 
-`@/*` maps to the project root (e.g., `@/app/page` for `./app/page`).
+`@/*` maps to the project root (e.g., `@/components/ui/button`).
 
 ## Code Style
 
