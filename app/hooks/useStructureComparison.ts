@@ -8,18 +8,7 @@ import type {
   ComparisonResult,
   StructureDifference,
 } from '@/app/types';
-
-// ParsedWorkbookから構造情報を抽出
-function extractStructure(workbook: ParsedWorkbook): WorkbookStructure {
-  return {
-    fileName: workbook.fileName,
-    sheets: workbook.sheets.map((sheet) => ({
-      sheetName: sheet.sheetName,
-      columnHeaders: sheet.rows[0]?.cells ?? [],
-      columnCount: sheet.rows[0]?.cells.length ?? 0,
-    })),
-  };
-}
+import { extractStructure } from '@/lib/workbook';
 
 export function useStructureComparison() {
   // 2つのシート構造を比較
